@@ -8,7 +8,7 @@ from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score,f1_score,recall_score,precision_score
 from sklearn.metrics import roc_curve, auc
 # importing dataset
-data = pd.read_csv('camel-1.2.csv ')
+data = pd.read_csv('camel-1.2.csv')
 X = data.iloc[:,1:-1].values
 data.bug = data.bug.apply(lambda x: 1 if x > 0 else 0) 
 y = data.iloc[:,-1].values

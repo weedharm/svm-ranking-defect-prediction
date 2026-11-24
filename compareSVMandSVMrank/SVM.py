@@ -1,3 +1,4 @@
+import sys
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -8,7 +9,9 @@ from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score,f1_score,recall_score,precision_score
 from sklearn.metrics import roc_curve, auc
 # importing dataset
-data = pd.read_csv('../data software defect prediction/dataApache(PROMISE)/log4j-1.1.csv ')
+# usage: python SVM.py [dataset.csv]  (default: PROMISE log4j-1.1, not included in this repo)
+data_path = sys.argv[1] if len(sys.argv) > 1 else '../data software defect prediction/dataApache(PROMISE)/log4j-1.1.csv'
+data = pd.read_csv(data_path)
 X = data.iloc[:,1:-1].values
 data.bug = data.bug.apply(lambda x: 1 if x > 0 else 0) 
 y = data.iloc[:,-1].values

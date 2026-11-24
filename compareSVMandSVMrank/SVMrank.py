@@ -1,3 +1,4 @@
+import sys
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import KFold, cross_val_score
@@ -56,7 +57,14 @@ start_time = time.time()
 # print('recall = ',recall)
 # print('precision = ',precision)
 # print('f1 = ',f1)
-data = pd.read_csv('../data software defect prediction/dataApache(PROMISE)/xalan-2.5.csv')
+# usage: python SVMrank.py [train.csv test.csv]
+# (default: train on PROMISE xalan-2.5, test on xalan-2.6; not included in this repo)
+if len(sys.argv) > 2:
+    train_path, test_path = sys.argv[1], sys.argv[2]
+else:
+    train_path = '../data software defect prediction/dataApache(PROMISE)/xalan-2.5.csv'
+    test_path = '../data software defect prediction/dataApache(PROMISE)/xalan-2.6.csv'
+data = pd.read_csv(train_path)
 
 X_train = data.iloc[:, 1:21]
 y_train = data.iloc[:, 21]
@@ -71,7 +79,7 @@ for i in y_train:
         status.append(0)
 y_train = np.array(status)
 X_train = X_train.to_numpy()
-data = pd.read_csv('../data software defect prediction/dataApache(PROMISE)/xalan-2.6.csv')
+data = pd.read_csv(test_path)
 
 X_test = data.iloc[:, 1:21]
 y_test = data.iloc[:, 21]
