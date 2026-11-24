@@ -33,12 +33,6 @@ env/
 *.swo
 *~
 
-# Output files
-responses/
-*.xlsx
-*.xls
-!example_videos.csv
-
 # OS
 .DS_Store
 Thumbs.db
